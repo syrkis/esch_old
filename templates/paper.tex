@@ -1,0 +1,126 @@
+\documentclass[11pt]{article} % 12pt font, specifies the document class
+
+% Packages common to both templates
+\usepackage{datetime}      % For handling dates
+\usepackage{graphicx}      % For handling graphics
+\usepackage{amssymb}       % For mathematical symbols
+\usepackage{amsmath, xparse}
+\usepackage{pgfplotstable} % For handling CSV data
+\usepackage{fancyhdr}
+\usepackage{parskip} % Removes default interparagraph spacing
+\usepackage{booktabs}      % For publication quality tables
+\usepackage{siunitx}       % For handling units and numbers
+\usepackage{listings}      % For source code listings
+\usepackage{caption}       % For captions customization
+\usepackage{etoolbox}      % For programming tools
+\usepackage{fancyvrb}      % For programming tools
+\usepackage{hyperref}      % For cross-referencing and hyperlinks
+\usepackage{float}         % For floating environments
+\usepackage{multicol}      % For multi-column layout
+\usepackage{longtable}     % For long tables
+\usepackage{adjustbox}     % For adjusting boxes
+\usepackage{xcolor}        % For color customization
+\usepackage[backend=biber, style=numeric]{biblatex} % For bibliography management
+
+\addbibresource{/Users/syrkis/code/esch/library.bib} % Bibliography file
+\linespread{1.5} % Line height
+% set geometrihy margin
+% set col margin to 0.6 in
+
+% Title, author, and date setup common to both (adjust as necessary)
+\title{$title$}
+\author{Noah Syrkis}
+\date{\today}
+
+% Additional settings and customizations can be added below as needed
+\providecommand{\tightlist}{\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}} % Define tightlist if used for lists without space
+
+\newcommand{\atable}[4]{
+    \ifthenelse{\equal{#4}{wide}}{ 
+        \begin{table*}[htbp]
+            \centering
+            \caption{#2}
+            \label{tab:#3}
+            \pgfplotstabletypeset[
+                col sep=comma,
+                string type,
+                every head row/.style={before row=\toprule,after row=\midrule},
+                every last row/.style={after row=\bottomrule},
+                header=true,
+                begin table=\begin{tabular},
+                end table=\end{tabular},
+            ]{#1}
+        \end{table*}
+
+    }{
+
+        \begin{minipage}{\columnwidth}
+        \begin{table}[H]
+            \centering
+            \caption{#2}
+            \label{tab:#3}
+            \pgfplotstabletypeset[
+                col sep=comma,
+                string type,
+                every head row/.style={before row=\toprule,after row=\midrule},
+                every last row/.style={after row=\bottomrule},
+                header=true,
+                begin table=\begin{tabular},
+                end table=\end{tabular},
+            ]{#1}
+        \end{table}
+        \end{minipage}
+    }
+
+}
+
+\newcommand{\afigure}[4]{
+
+  \ifthenelse{\equal{#4}{wide}}{
+  
+    \begin{figure*}[htbp]
+     \centering
+     \includegraphics[width=\textwidth]{#1}
+     \captionof{figure}{#2}
+     \label{fig:#3}
+    \end{figure*}
+  
+  }{
+
+    \begin{minipage}{\columnwidth}
+     \centering
+     \includegraphics[width=\columnwidth]{#1}
+     \captionof{figure}{#2}
+     \label{fig:#3}
+    \end{minipage}
+  
+  }
+
+}
+
+% multicol
+\usepackage{multicol}
+\usepackage[left=0.7in, right=0.7in, top=1in, bottom=1in]{geometry}
+\setcounter{unbalance}{2}
+\raggedcolumns
+\interlinepenalty=100
+\widowpenalty=10000
+\clubpenalty=10000
+\flushbottom
+
+% col margin
+\setlength{\columnsep}{0.7in}
+
+% Document-specific title information % custom title
+\title{$title$}
+\author{Noah Syrkis \\ University of Copenhagen \\ noah@syrkis.com}
+\date{}
+
+% Document body
+\begin{document}
+\maketitle % Creates the title
+\begin{multicols}{2}
+  $body$
+\end{multicols}
+\printbibliography % Prints the bibliography
+\end{document}

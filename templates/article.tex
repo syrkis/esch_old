@@ -1,0 +1,76 @@
+\documentclass{article}
+
+\usepackage[demo]{graphicx} % Demo for MWE
+\usepackage[landscape,margin=1cm]{geometry}
+\usepackage{color}
+\usepackage{flowfram}
+\usepackage{lipsum}
+\usepackage{microtype}
+
+\newflowframe[1-7]{0.30\textwidth}{\textheight}
+{0pt}{0pt}[leftcolumn]
+
+\newflowframe[2,4-7]{0.30\textwidth}{\textheight}
+{0.35\textwidth}{0pt}[centercolumn]
+
+\newflowframe[2,4-7]{0.30\textwidth}{\textheight}
+{0.7\textwidth}{0pt}[rightcolumn]
+
+\newflowframe[1,3]{0.30\textwidth}{.6\textheight}
+{0.35\textwidth}{0pt}[shortcentercolumn]
+
+\newflowframe[1,3]{0.30\textwidth}{.6\textheight}
+{0.7\textwidth}{0pt}[shortrightcolum]
+
+\newstaticframe[1]{0.65\textwidth}{.35\textheight}
+{0.35\textwidth}{.65\textheight}[statico]
+
+\newstaticframe[3]{0.65\textwidth}{.35\textheight}
+{0.35\textwidth}{.65\textheight}[statico2]
+
+\usepackage{caption}
+
+\title{\textbf{Flowfram demo}}
+\author{by Fran}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+{\color{blue} The dummy text of this MWE flow freely
+through three columns in four pages. In pages 1 and 3 the
+two landscape images have a width of two columns.}
+\bigskip
+
+\lipsum[1]
+
+\begin{figure}[hb]
+\includegraphics[width=.3\textwidth]{figure.png}
+\caption{This is a float -- here -- figure.}
+\end{figure}
+
+\begin{staticcontents*}{statico}
+\includegraphics[width=\textwidth, 
+ height=0.32\textheight]{figure.png}\\
+\captionof{figure}
+{This is a non float image in a static frame.}
+\end{staticcontents*}
+
+\begin{staticcontents*}{statico2}
+\includegraphics[width=\textwidth, 
+height=0.32\textheight]{figure.png}\\
+\captionof{figure}
+{This is another landscape in another static frame.}
+\end{staticcontents*}
+
+\lipsum[2-3]
+
+\begin{figure}[h]
+\includegraphics[width=.3\textwidth]{figure.png}
+\caption{Other float -- here (bottom) -- figure.}
+\end{figure}
+
+\lipsum[4-35]
+
+\end{document}

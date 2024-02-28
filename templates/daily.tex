@@ -1,0 +1,65 @@
+\documentclass[10pt]{extarticle}
+\usepackage[paperheight=20cm,paperwidth=10cm, top=25mm, left=5mm, right=5mm, bottom=25mm]{geometry}
+\usepackage[cam, width=14cm, height=24cm, center, pdftex]{crop} % Adjusts crop settings to fit your document dimensions
+\usepackage{datetime} % For formatting the date
+\usepackage{fancyhdr} % For custom headers and footers
+\usepackage{amssymb}       % For mathematical symbols
+\usepackage{enumitem}      % For customizing list formatting
+\usepackage{titlesec}      % For customizing section titles
+\usepackage{crop}
+\usepackage{microtype} % For letter spacing
+\usepackage{tikz} % For drawing lines
+
+
+% Customize itemize to use black right-pointing triangle
+\newcommand{\blacktrianglee}{\ensuremath{\blacktriangleright}}
+% Then use this command in your \setlist definition
+\setlist[itemize]{label=\blacktrianglee}
+
+% Header and footer configuration
+\pagestyle{fancy}
+\fancyhf{}                                                                        % Clears existing header and footer
+\renewcommand{\headrulewidth}{0pt}                                                % Removes the header rule
+\renewcommand{\footrulewidth}{0pt}                                                % Removes the footer rule
+\renewcommand{\baselinestretch}{1.5}
+\providecommand{\tightlist}{%
+  \setlist[itemize]{nosep, leftmargin=*}                                          % Reduces padding around lists
+  \setlist[enumerate]{nosep, leftmargin=*}                                        % Applies to numbered lists too
+}
+\newdateformat{mydate}{\shortmonthname[\the\month]. \THEDAY, \THEYEAR}            % Custom date format
+\fancyhead[C]{
+    \begin{tabular}{c}
+        \textls[200]{\huge{\textbf{NØAH SYRKIS}}}\\[10mm] % Increase space between SYRKIS and the date+city
+        \textls[100]{{\textbf{\hfill\mydate{\today}, Prediction\hfill}}}
+    \end{tabular}
+}
+
+\fancyfoot[C]{%
+  \begin{tabular}{c}
+    \textls[100]{{\textbf{
+        Read
+        \space\textbar\space\space
+        Meditate
+        \space\textbar\space\space
+        Workout
+        \space\textbar\space\space
+        Write
+    }}}
+    % \textls[200]{\large{\textbf{SYRKIS}}}
+  \end{tabular}
+}                                                       % Centered footer with habits and author initials
+
+% Custom section titles without numbers
+\titleformat{\section}
+  {\normalfont\bfseries}{}{0em}{} % Removes section number
+\titlespacing*{\section}{0pt}{4pt}{4pt}
+
+\begin{document}
+% \bfseries
+\vspace*{2mm}
+\vfill
+\textls[50]{\large$body$}
+\vfill\vfill\vfill\vfill
+\vspace*{-0pt} % Adjust space above the lines as necessary
+
+\end{document}

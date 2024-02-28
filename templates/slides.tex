@@ -1,0 +1,183 @@
+\documentclass[aspectratio=32]{beamer}
+
+
+% Load packages
+\usepackage{datetime}
+\usepackage{ifthen}
+\usepackage{ragged2e}
+\usepackage{fancyvrb}   % Alternative verbatim environment
+\usepackage{graphicx}      % For handling graphics
+\usepackage{amssymb}       % For mathematical symbols
+\usepackage{amsmath}
+\usepackage{xparse}
+\usepackage{pgfplotstable} % For handling CSV data
+\usepackage[utf8]{inputenc}
+\usepackage{fancyhdr}
+\usepackage{parskip} % Removes default interparagraph spacing
+\usepackage{booktabs}      % For publication quality tables
+\usepackage{siunitx}       % For handling units and numbers
+\usepackage{listings}
+\usepackage{caption}       % For captions customization
+\usepackage{etoolbox}      % For programming tools
+\usepackage{hyperref}      % For cross-referencing and hyperlinks
+\usepackage{float}         % For floating environments
+\usepackage{multicol}      % For multi-column layout
+\usepackage{longtable}     % For long tables
+\usepackage{adjustbox}     % For adjusting boxes
+\usepackage{xcolor}        % For color customization
+\usepackage{fontspec}      % Allows font customization with XeLaTeX/LuaLaTeX
+\usepackage{unicode-math}  % For unicode math support
+\usepackage[backend=biber, style=numeric]{biblatex}
+
+% Set monospace font to Fira Code
+\setmonofont{DejaVuSansMono}[Contextuals=Alternate] % Adjusts font features
+
+% code listing
+\lstset{
+    basicstyle=\ttfamily, % Use monospace font at a smaller size
+    breaklines=true, % Enable line breaking
+    numbers=left, % Number lines
+    tabsize=4, % Set tab size
+    showstringspaces=false, % Don't show spaces in strings
+    showspaces=true,      % Display spaces in code
+    literate={\ }{{\textcolor{white}{\textvisiblespace}}}1, % Customize space representation
+    frame=single,        % Frame around the code
+    framesep=2pt,        % Frame separation
+    aboveskip=3pt,       % Space above code block
+    belowskip=3pt,       % Space below code block
+    xleftmargin=5pt,     % Left margin
+    xrightmargin=5pt,    % Right margin
+    columns=fullflexible % Equal spacing for monospace
+}
+
+
+% Metadata
+\title{$title$}
+\date{\mydate\today}
+\author{$author$}
+\newcommand{\affiliation}{$affiliation$} % Capture affiliation from the header
+\newcommand{\footerurl}{$url$} % Capture the URL from the header
+
+% BibTeX setup
+\addbibresource{/Users/syrkis/code/esch/library.bib}
+
+% Listings and date setup
+\newdateformat{mydate}{\shortmonthname[\the\month]. \THEDAY, \THEYEAR}
+% tight list
+\providecommand{\tightlist}{\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+% Font setup
+\usefonttheme{serif}
+\renewcommand{\baselinestretch}{1.5}
+
+% Text color setup
+\setbeamercolor{normal text}{fg=black,bg=white}
+\setbeamercolor{frametitle}{fg=black,bg=white}
+\setbeamercolor{title}{fg=black,bg=white}
+\setbeamercolor{bibliography entry author}{fg=black}
+\setbeamercolor{bibliography entry title}{fg=black}
+\setbeamercolor{bibliography entry location}{fg=black}
+\setbeamercolor{bibliography entry note}{fg=black}
+\setbeamercolor{bibliography entry journal}{fg=black}
+\setbeamercolor{bibliography item}{fg=black}
+\setbeamercolor{tableofcontents}{fg=black}
+\setbeamercolor{section in toc}{fg=black}
+\setbeamercolor{subsection in toc}{fg=black}
+\setbeamercolor{itemize item}{fg=black}
+\setbeamercolor{item}{fg=black}
+\setbeamercolor{caption name}{fg=black}
+\setbeamercolor{caption}{fg=black}
+
+% Miscellaneous settings
+\setbeamertemplate{frametitle continuation}[from second]
+% section in toc number should be without dot after number
+\setbeamertemplate{section in toc}{\inserttocsectionnumber{} \inserttocsection}
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{caption}[numbered]
+\setbeamertemplate{headline}{}
+
+% Footer setup
+\setbeamertemplate{footline}
+{
+  \leavevmode
+  \hbox{
+    \ifnum\thepage>1
+      \hspace{0.4cm}\insertframenumber{} of \inserttotalframenumber
+      \begin{beamercolorbox}[wd=\paperwidth, ht=2.5ex,dp=1ex]{page number}
+        % Check if URL is defined and not set to "false"
+        \ifthenelse{\equal{\footerurl}{} \OR \equal{\footerurl}{false}}{}{%
+          \hfill\footerurl\hspace{1.7cm}
+        }
+      \end{beamercolorbox}
+    \fi
+  }
+    \vspace*{0.4cm}
+}
+
+% Modify the frametitle template
+\setbeamertemplate{frametitle}
+{
+  \vskip0.4cm
+  \leavevmode
+  \hbox{%
+    \begin{beamercolorbox}[wd=\paperwidth,ht=0ex,dp=0ex]{frametitle}
+      \hskip0.7cm\usebeamerfont{frametitle}%
+        {\insertsectionnumber~\insertframetitle} % Otherwise, display the frame title with section number
+    \end{beamercolorbox}
+  }
+}
+
+% \AtBeginSection[]{
+%   \begin{frame}
+%     \vfill
+%     \tableofcontents[hideallsubsections]
+%     \vfill
+%   \end{frame}
+% }
+
+
+% Custom title page
+\defbeamertemplate*{title page}{customized}
+{
+  \begin{minipage}[c][\textheight][c]{0.5\textwidth}
+    \begin{center}
+      \usebeamerfont{title}\inserttitle\par
+      \vspace{1cm}
+      \small\usebeamerfont{author}\insertauthor\par
+      \ifthenelse{\equal{\affiliation}{}}{}{% Check if affiliation is defined
+        \small\affiliation\par % Display affiliation
+      }
+      \small\usebeamerfont{date}\insertdate\par
+    \end{center}
+  \end{minipage}%
+  \hfill
+  \begin{minipage}[c][0.7\textheight][c]{0.4\textwidth}
+    \tableofcontents[hideallsubsections]
+  \end{minipage}
+}
+
+\newlength{\maxwidth}
+\setlength{\maxwidth}{.70\textwidth} % Example: 80% of the text width
+\newlength{\maxheight}
+\setlength{\maxheight}{.70\textheight} % Example: 70% of the text height
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+
+\begin{document}
+
+  % Front page
+  \ifthenelse{\equal{\inserttitle}{}}{}{% Check if title is empty
+  \begin{frame}
+    \titlepage
+  \end{frame}
+  }
+
+  $body$
+
+  % bibliography
+
+\begin{frame}[allowframebreaks]
+  \Large{References}
+  \small\linespread{1.2}\printbibliography
+\end{frame}
+
+\end{document}
