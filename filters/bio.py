@@ -33,7 +33,7 @@ if __name__ == "__main__":
         sys.exit(1)
     
     markdown_file = sys.argv[1]
-    inject_file = '/Users/syrkis/code/press/docs/bio.md'
+    inject_file = '/Users/syrkis/code/esch/docs/bio.md'
     
     inject_content_after_header(markdown_file, inject_file)
     print(f"Injected content into {markdown_file} successfully.")
