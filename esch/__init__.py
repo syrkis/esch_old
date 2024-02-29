@@ -1,3 +1,3 @@
-from .plot import train_curve
+from .plot import curves_fn
 
-__all__ = ['train_curve']
+__all__ = ['curves_fn']
