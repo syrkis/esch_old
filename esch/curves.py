@@ -3,12 +3,17 @@
 # by: Noah Syrkis
 
 # imports
+import jax, json
+import networkx as nx
+from jax import grad
+from jax.lib import xla_client
+
+
 import plotly.graph_objects as go
 import plotly.io as pio
 import darkdetect
 
 # globals
-# Define a custom minimalistic theme based on the system theme
 ink_color = 'black' if darkdetect.isLight() else 'white'
 bg_color  = 'white' if darkdetect.isLight() else 'black'
 
@@ -40,7 +45,7 @@ minimalist_theme = {
 pio.templates['minimalist'] = minimalist_theme
 pio.templates.default = "minimalist"
 
-# functions
+# plot curves
 def curves_fn(curves, info):
     fig = go.Figure()
     # Predefine a set of distinct line styles and colors
