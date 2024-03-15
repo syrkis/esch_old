@@ -7,7 +7,7 @@ if [ "$#" -ne 1 ]; then
 fi
 
 # Configuration
-Platenpath="$HOME/code/press"
+Platenpath="$HOME/code/esch"
 file_base=$(echo "$1" | sed 's/\.md//')
 
 # Create a temporary file for intermediate processing

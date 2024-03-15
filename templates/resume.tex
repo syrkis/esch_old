@@ -1,0 +1,64 @@
+\documentclass[letterpaper,10pt]{article}
+
+% Essential packages for graphics, symbols, and enhanced functionality
+\usepackage{graphicx, amssymb, amsmath, fancyhdr, parskip, booktabs, array, calc, listings, caption, etoolbox, fancyvrb, hyperref, float, multicol, longtable, geometry, titlesec, enumitem}
+
+% Adjust line height
+\renewcommand{\baselinestretch}{1.2}
+
+% Remove page numbers
+\pagestyle{empty}
+
+% Configure page margins
+\geometry{margin=1in}
+
+% Set paragraph indentation to zero
+\setlength{\parindent}{0pt}
+
+% Support for tightlist command, useful for Markdown to LaTeX conversion
+\providecommand{\tightlist}{\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+% Remove numbering from sections, subsections, and subsubsections
+\renewcommand{\thesection}{}
+\renewcommand{\thesubsection}{}
+\renewcommand{\thesubsubsection}{}
+
+% Custom horizontal bar commands
+\newcommand{\topsubsectionbar}{\noindent\rule{\textwidth}{2pt}} % Top subsection bar thickness
+\newcommand{\lowsubsectionbar}{\noindent\rule{\textwidth}{1pt}} % Lower subsection bar thickness
+
+% Customize section, subsection, and subsubsection headings
+\titleformat{\section}
+  {\Large\bfseries\centering}
+  {}
+  {0pt}
+  {\MakeUppercase} % Uppercase for section headings
+
+\titleformat{\subsection}
+  {\large\bfseries\filcenter}
+  {\thesubsection}
+  {0pt}
+  {\vspace{-0.5ex}\topsubsectionbar\newline\noindent}
+  [\vspace{-2.8ex}\lowsubsectionbar] % Adjusted spacing for bottom line
+
+\titleformat{\subsubsection}
+  {\bfseries\filcenter}
+  {\thesubsubsection}
+  {1em}
+  {\MakeUppercase} % Uppercase for subsubsection headings
+
+% Adjust spacing before and after sections and subsections to 0
+\titlespacing*{\section}{0pt}{0pt}{0pt}
+\titlespacing*{\subsection}{0pt}{0pt}{0pt}
+
+% Redefine booktabs rules to do nothing
+\renewcommand{\toprule}{}
+\renewcommand{\midrule}{}
+\renewcommand{\bottomrule}{}
+\setlength{\intextsep}{10pt plus 2pt minus 2pt}
+
+\begin{document}
+
+$body$
+
+\end{document}

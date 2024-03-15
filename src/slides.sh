@@ -32,6 +32,7 @@ pandoc "$temp_md" -o "$base_name.tex" \
     --lua-filter="$Presspath/filters/header.lua" \
     --filter pandoc-crossref
 
+
 # Add allowframebreaks to all frames
 python "$Presspath/filters/frames.py" "$base_name.tex"
 
@@ -60,7 +61,7 @@ if ! lualatex "$base_name.tex"; then
 fi
 
 # Cleanup intermediate files
-rm -f "$base_name".{aux,bbl,bcf,blg,log,nav,out,run.xml,snm,toc,vrb} "$temp_md" > /dev/null 2>&1
+rm -f "$base_name".{aux,tex,bbl,bcf,blg,log,nav,out,run.xml,snm,toc,vrb} "$temp_md" > /dev/null 2>&1
 
 # Open the PDF
 open "$base_name.pdf"

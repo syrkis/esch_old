@@ -12,7 +12,7 @@ DIR="$( cd "$( dirname "$(realpath "${BASH_SOURCE[0]}")" )" &> /dev/null && pwd 
 
 # if type is not specified, default to "page"
 if [[ $header != *type* ]]; then
-  header="type: paper\n$header"
+  header="type: report\n$header"
 fi
 
 # if there is no date, default to today
