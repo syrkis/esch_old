@@ -2,3 +2,4 @@
 docs/
 **/__pycache__
 esch.egg-info/
+dist/
